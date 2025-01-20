@@ -1,0 +1,15 @@
+{% extends "pos/base.html" %}
+{% load static %}
+{% block title %}David's Coffee Shop{% endblock %} 
+
+{% block styles %}<link rel="stylesheet" href="{% static 'pos/front_page.css' %}">{% endblock %}
+
+{% block content %}
+
+<button id="startbut">
+    <a href="{% url 'pos:drinklist' %}" type="reset"  >Start an order</a> 
+</button>
+
+
+
+{% endblock %}

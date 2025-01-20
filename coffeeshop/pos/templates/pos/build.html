@@ -1,0 +1,54 @@
+{% extends "pos/base.html" %}
+{% load static %}
+{% block title %}Add Extras{% endblock %} 
+
+{% block styles %}<link rel="stylesheet" href="{% static 'pos/build.css' %}">{% endblock %}
+    
+{% block content %}
+    <h3>Make your {{drink.drink_name}} yours</h2>
+        <form method='post' id="formblock">
+            {% csrf_token %}
+            <input type="hidden" name="drink" value="{{drink}}"
+            <fieldset>
+              <div id="extrasdiv">
+                <div class='indiv'>
+                  {% if sizes %}
+                  <h4>Size</h4>
+                  {% for size in sizes %}
+                  <input type="radio"  name="size" id="{{size.id}}" value="{{size.id}}" required>
+                  <label for="{{size.id}}" id="sizelist" >{{size}}   &nbsp&nbsp  ${{size.size_cost|floatformat:2}} </label><br>
+                  {% endfor %}
+                  {% endif %}
+                  <p id="quantlab">Quantity &nbsp&nbsp<input type="number" name="quantity" value="1" min="1" max="9"></p>
+                  <br>
+                </div>
+                <div class='indiv'>
+                  <h4>Add Some Flavor</h4>
+                  {% if flavor %}
+                  {% for flav in flavor %}
+                  <input class="flavlist" type="checkbox" id="flavor_{{flav.id}}" name="flavor" value="{{flav.id}}">
+                  <label for="flavor_{{flav.id}}" class="flav_lab">{{flav.flavor_name}} - ${{flav.flavor_upcharge|floatformat:2}}</label><br>
+                  {% endfor %}
+                  {% else %}
+                  <p>No flavors are currently available</p>
+                  {% endif %}
+                </div>
+                <div class='indiv'>
+                  <h4>Add Toppings</h4>
+                  {% if topping %}
+                  {% for topp in topping%}
+                  <input type="checkbox" id="topping_{{topp.id}}" name="topping" value="{{topp.id}}">
+                  <label for="topping_{{topp.id}}" class="topp_lab">{{topp.topping_name}} - ${{ topp.topping_upcharge|floatformat:2}}</label><br>
+                  {% endfor %}
+                  {% else %}
+                  <p>No toppings are currently available</p>
+                  {% endif %}
+                </div>
+              </div>
+            </fieldset>
+            <br>
+            <div id="subdiv">
+              <input class="allbuts" id="subbut" type="submit" value="Add item to my order">
+            </div>
+          </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+#drink_done {
+  display: grid;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1rem;
+  max-height: 5%;
+}
+li {
+  list-style: none;
+}
+.head1 {
+  text-align: center;
+}
+#options {
+  text-align: center;
+  bottom: 45px;
+}
+#total {
+  margin-left: 20px;
+}
+.finaloptions {
+  margin-top: -25px;
+}

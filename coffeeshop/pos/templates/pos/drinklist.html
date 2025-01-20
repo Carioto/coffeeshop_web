@@ -1,0 +1,21 @@
+{% extends "pos/base.html" %}
+{% load static %}
+
+
+    
+{% block title %}Build a Drink{% endblock %} 
+{% block styles %}<link rel="stylesheet" href="{% static 'pos/drinklist.css' %}">{% endblock %}
+
+
+{% block content %}
+    {% if drink_list %}
+    <ul id="drinks">
+        {% for drink in drink_list %}
+        <li class="allbuts"><a href="{% url 'pos:build' drink.id %}"">{{drink.drink_name}}</a></li>
+        {% endfor %}
+    </ul>
+    
+    {% else %}
+        <p>No drinks are available.</p>
+    {% endif %}
+    {% endblock %}

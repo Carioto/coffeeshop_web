@@ -1,0 +1,37 @@
+{% extends "pos/base.html" %}
+{% load static %}
+{% block title %}Change Drink Quantities!{% endblock %} 
+
+{% block styles %}<link rel="stylesheet" href="{% static 'pos/changes.css' %}">{% endblock %}
+
+{% block content %}
+<h3 class="head1">Change Drink Quantities!</h3>
+<div id="layout">
+    {% if current_order %}
+        <form method="post" id="changeblock">
+            {% csrf_token %}
+            {% for drink in current_order%}
+            <li id="list_drinks"><input id='qnum' type="number" name="quantity_{{drink.drink}}" value={{drink.quantity}} min="1" max="9"> {{drink.drink}} 
+                --
+                {% for flavor in drink.flavors %}
+                 {{flavor.name}}
+                 {% if not forloop.last %},&nbsp{% endif %}
+                {% endfor %}
+                --
+                {% for topping in drink.toppings %}
+                {{topping.name}}
+                {% if not forloop.last %},&nbsp{% endif %}
+                {% endfor %}
+                <input type="submit" id='trash' value="🗑️"></li>
+            {% endfor %}
+            <div id="subdiv">
+                <input class="allbuts" id="subbut" type="submit" value="Make changes">
+              </div>
+        </form>
+    {% else %}
+            <p>There are no items in your order</p>
+    {% endif %}
+ 
+</div>
+
+{% endblock %}

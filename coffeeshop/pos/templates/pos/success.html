@@ -1,0 +1,43 @@
+{% extends "pos/base.html" %}
+{% load static %}
+{% block title %}Drink Complete!{% endblock %} 
+
+{% block styles %}<link rel="stylesheet" href="{% static 'pos/success.css' %}">{% endblock %}
+
+{% block content %}
+<h3 class="head1">Drink added to your order!</h3>
+<div id="drink_done">
+  <div>
+
+    <p>{{data.drink}}</p>
+  </div>
+  <div class="finaloptions">
+    <p>Qty: {{data.quantity}} {{data.size.size_name}}</p>
+    {% if data.flavors %}
+    <ul>
+      {% for flavor in data.flavors %}
+      <li>{{ flavor.name }} flavor</li>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="finaloptions">
+    </ul>
+    {% if data.toppings %}
+    <ul>
+      {% for topp in data.toppings %}
+      <li>{{ topp.name }} topping</li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+  <div>
+    <p id="total">Subtotal: ${{data.total_cost|floatformat:2}}</p>
+  </div>
+</div>
+<div id="options">
+  <a href="{% url 'pos:drinklist' %}" type="submit" class="allbuts" >Add another drink</a>
+  <a href="{% url 'pos:complete' %}" type="submit"  class="allbuts">I'm done with my order</a>
+  <a href="{% url 'pos:quantities' %}" type="submit"  class="allbuts">Change quantities</a>
+  <a href="{% url 'pos:front_page' %}" type="reset" class="allbuts" >Cancel order</a> 
+</div>
+{% endblock %}

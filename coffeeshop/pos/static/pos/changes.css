@@ -1,0 +1,12 @@
+#list_drinks {
+  list-style: none;
+}
+#trash {
+  background-color: black;
+  border: none;
+}
+#qnum {
+  background-color: black;
+  color: aliceblue;
+  width: 30px;
+}

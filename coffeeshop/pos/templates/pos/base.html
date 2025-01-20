@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title> 
+    <link rel="stylesheet" href="../../static/pos/base.css">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1 id="shopname">The Time is Now</h1>
+        <h1 id="myhead">Coffee Shop</h1>
+    </header>
+    <div id="layout">
+        <aside id="sidebar">
+            {% if current_order %}
+            <div id="imagediv">
+                <figure>
+                    <img src='../../static/pos/Wobbles2.webp' alt='Wobbles the Waiter'
+                    class='wobbles_intro' />
+                    <figcaption>A fine choice!</figcaption>
+                </figure>
+            </div>
+            <h2 id="orderlabel">Your Order</h2>
+            <ul>
+            {% for drink in current_order%}
+            <li id="side_drinks">{{drink.quantity}} {{drink.drink}} = ${{drink.total_cost|floatformat:2}}</li>
+                {% endfor %}
+            </ul>
+            <div id="aside_total">
+                   <div class="order-item">
+                      <span>Subtotal:</span>
+                      <span> ${{subtotal|floatformat:2}}</span>
+                    </div>
+                    <div class="order-item">
+                      <span>Tax ({{tax|floatformat:2}}%):</span>
+                      <span> ${{tax_amount}}</span>
+                    </div>
+                    <div class="order-item total">
+                      <span>Total:</span>
+                      <span> ${{order_total|floatformat:2}}</span>
+                    </div>
+                  </div>
+            </div>
+            {% else %}
+            <div id="imagediv">
+                <figure>
+                    <img src='../../static/pos/Wobbles1.webp' alt='Wobbles the Waiter'
+                    class='wobbles_intro' />
+                    <figcaption>Hi, I'm Wobbles.  May I take your order?</figcaption>
+                </figure>
+            </div>
+            {% endif %}
+        </aside>
+    </div>
+    <main>
+        {% block content %}{% endblock %}
+        {% block scripts %}{% endblock %}
+    </main>
+</body>
+<footer>
+    <div class='footdiv'>
+       <img src='../../static/pos/foot_logo.png' alt='Site Logo'
+        class='footimg' />
+        <span class='footnote'>
+        This app created by David Carioto
+        </span>
+        </div>
+</footer>
+</html>

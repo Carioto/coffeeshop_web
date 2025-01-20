@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'pos/style.css' %}">
+    
+    <h1 id="myhead">David's Coffee Shop</h1>
+
+    <h3>Build your {{drink.drink_name}}</h2>
+        <form action="{% url 'pos:finish_drink' %}" method='post'>
+            {% csrf_token %}
+            <fieldset>
+              <h4>Add Some Flavor</h4>
+          {% if flavor %}
+            {% for flav in flavor%}
+            <input type="checkbox" id="{{flav.id}}" name="{{flav.id}}" value="{{flav.id}}">
+            <label for="{{flav.id}}">{{flav.flavor_name}}</label>
+            {% endfor %}
+          {% else %}
+            <p>No flavors are currently available</p>
+          {% endif %}
+
+          <h4>Add Toppings</h4>
+          {% if topping %}
+           {% for topp in topping%}
+            <input type="checkbox" id="{{topp.id}}" name="{{topp.id}}" value="{{topp.id}}">
+            <label for="{{topp.id}}">{{topp.topping_name}}</label>
+           {% endfor %}
+          {% else %}
+            <p>No toppings are currently available</p>
+          {% endif %}
+          </fieldset>
+          <br>
+          <input type="submit" value="Finish">
+        </form>
+
+</html>

@@ -1,0 +1,16 @@
+{% extends "pos/base.html" %}
+{% load static %}
+{% block title %}ORDER Complete!{% endblock %} 
+
+{% block styles %}<link rel="stylesheet" href="{% static 'pos/complete.css' %}">{% endblock %}
+
+{% block content %}
+<div id="complete">
+
+  <p class="head1">Your order is being prepared.</p>
+  <p class="head1">Thanks for visiting us.  This is who we are.</p>
+
+  <p>{{order_id}}</p>
+  <a href="{% url 'pos:front_page' %}" type="reset" class="allbuts" >Start a New order</a> 
+</div>
+  {% endblock %}
