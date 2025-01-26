@@ -1,0 +1,14 @@
+#drinks {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+li:hover {
+  background-color: rgb(60, 59, 59);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(235, 196, 196);
+}

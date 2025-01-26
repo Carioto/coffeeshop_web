@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Drink, Flavor, Topping, Size, Order
 from django.http import HttpResponse
+import pprint
 
 # tax for Allegheny, PA : 7%
 tax = 1.07
@@ -8,6 +9,7 @@ tax = 1.07
 
 def front_page(request):
     request.session["order"] = []
+    request.session["item_sequence"] = 0
     return render(request, "pos/front_page.html")
 
 
@@ -22,6 +24,8 @@ def drinklist(request):
 def build(request, drink_id):
     if request.method == "POST":
         order = request.session.get("order", [])
+        request.session["item_sequence"] += 1
+        item_sequence = request.session["item_sequence"]
 
         selected_drink = request.POST.get("drink")
         drink = get_object_or_404(Drink, drink_name=selected_drink)
@@ -48,6 +52,7 @@ def build(request, drink_id):
         drink_tot = (flav_cost_tot + topp_cost_tot + selected_size.size_cost) * quant
 
         data = {
+            "item_sequence": item_sequence,
             "drink": selected_drink,
             "size": selected_size.to_dict(),
             "flavors": flav_prices,
@@ -95,27 +100,39 @@ def quantities(request):
         order = request.session.get("order", [])
         updated_order = []
 
-        for drink in order:
-            # Get the new quantity from the POST data
-            drink_key = f"quantity_{drink['drink']}"  # Use a unique key format
-            new_quantity = int(request.POST.get(drink_key, drink["quantity"]))
+        if "remove_drink" in request.POST:
+            drink_to_remove = int(request.POST.get("remove_drink"))
+            print(f"Received drink_to_remove: {drink_to_remove}")  # Debugging output
+            if drink_to_remove:
+                updated_order = [
+                    drink
+                    for drink in order
+                    if drink["item_sequence"] != drink_to_remove
+                ]
+                request.session["order"] = updated_order
+                request.session.modified = True
+                return render(request, "pos/changesdone.html")
 
-            # Update the drink's quantity and recalculate the total cost
-            drink["quantity"] = new_quantity
-            drink["total_cost"] = new_quantity * (
-                drink["size"]["size_cost"]
-                + sum(f["price"] for f in drink["flavors"])
-                + sum(t["price"] for t in drink["toppings"])
-            )
-            updated_order.append(drink)
+        else:
 
-        # Update the session
-        request.session["order"] = updated_order
-        request.session.modified = True
-        print(updated_order)
+            for drink in order:
+                drink_key = (
+                    f"quantity_{drink['item_sequence']}"  # Use a unique key format
+                )
+                new_quantity = int(request.POST.get(drink_key, drink["quantity"]))
 
-        # Redirect back to the quantities page or another page
-        return render(request, "pos/changesdone.html")
+                drink["quantity"] = new_quantity
+                drink["total_cost"] = new_quantity * (
+                    drink["size"]["size_cost"]
+                    + sum(f["price"] for f in drink["flavors"])
+                    + sum(t["price"] for t in drink["toppings"])
+                )
+                updated_order.append(drink)
+
+            request.session["order"] = updated_order
+            request.session.modified = True
+
+            return render(request, "pos/changesdone.html")
     else:
         return render(request, "pos/changes.html")
 

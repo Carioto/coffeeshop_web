@@ -8,6 +8,7 @@
 
 
 {% block content %}
+<div id="drinklist">
     {% if drink_list %}
     <ul id="drinks">
         {% for drink in drink_list %}
@@ -16,6 +17,7 @@
     </ul>
     
     {% else %}
-        <p>No drinks are available.</p>
+    <p>No drinks are available.</p>
     {% endif %}
+</div>
     {% endblock %}

@@ -86,16 +86,3 @@ ul {
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(70, 43, 226);
 }
-@media screen and (max-width: 1000px) {
-  .footdiv {
-    height: 25px;
-    padding-bottom: 30px;
-  }
-  .footimg {
-    height: 24px;
-    padding-bottom: 2px;
-  }
-  .footnote {
-    font-size: 0.75rem;
-  }
-}

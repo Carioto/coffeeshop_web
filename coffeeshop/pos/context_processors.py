@@ -8,7 +8,6 @@ def current_order(request):
         subtot = subtot + float(drink["total_cost"])
     order_total = round(subtot * tax, 2)
     tax_amount = round(subtot * (tax - 1), 2)
-    print(order)
     return {
         "current_order": order,
         "subtotal": subtot,

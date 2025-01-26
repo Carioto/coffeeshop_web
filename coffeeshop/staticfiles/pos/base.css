@@ -1,0 +1,101 @@
+:root {
+  background-color: rgb(32, 20, 20);
+  color: aliceblue;
+}
+#sidebar {
+  height: 91%; /* Full-height: remove this if you want "auto" height */
+  width: 180px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px;
+}
+main {
+  margin-right: 180px;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+#orderlabel,
+#side_drinks {
+  text-align: center;
+}
+
+.allbuts {
+  text-decoration: none;
+  font-size: 1.75rem;
+  list-style: none;
+  border: 1px solid black;
+  color: rgb(235, 196, 196);
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  background-color: gray;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#aside_total {
+  position: fixed;
+  bottom: 10%;
+  padding-left: 15px;
+}
+.order-item {
+  display: flex;
+  justify-content: space-between; /* Align items to opposite ends */
+}
+#imagediv {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wobbles_intro {
+  width: 100px;
+}
+.footdiv {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5%;
+  background-color: bisque;
+  text-align: center;
+  padding-top: 3px;
+}
+#myhead,
+#shopname {
+  text-align: center;
+  color: rgb(225, 115, 115);
+  margin-right: 180px;
+}
+#shopname {
+  font-style: italic;
+}
+#myhead {
+  margin-top: -20px;
+}
+.footimg {
+  height: 30px;
+  vertical-align: middle;
+}
+.footnote {
+  margin-left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(70, 43, 226);
+}
+@media screen and (max-width: 1000px) {
+  .footdiv {
+    height: 25px;
+    padding-bottom: 30px;
+  }
+  .footimg {
+    height: 24px;
+    padding-bottom: 2px;
+  }
+  .footnote {
+    font-size: 0.75rem;
+  }
+}

@@ -11,7 +11,7 @@
         <form method="post" id="changeblock">
             {% csrf_token %}
             {% for drink in current_order%}
-            <li id="list_drinks"><input id='qnum' type="number" name="quantity_{{drink.drink}}" value={{drink.quantity}} min="1" max="9"> {{drink.drink}} 
+            <li id="list_drinks"><input id='qnum' type="number" name="quantity_{{drink.item_sequence}}" value={{drink.quantity}} min="1" max="9"> {{drink.drink}} 
                 --
                 {% for flavor in drink.flavors %}
                  {{flavor.name}}
@@ -22,7 +22,8 @@
                 {{topping.name}}
                 {% if not forloop.last %},&nbsp{% endif %}
                 {% endfor %}
-                <input type="submit" id='trash' value="🗑️"></li>
+                <input type="hidden" name="drink_to_remove" value="{{ drink.item_sequence }}">
+                <button type="submit" name="remove_drink" value="{{ drink.item_sequence }}" id="trash">🗑️</button></li>
             {% endfor %}
             <div id="subdiv">
                 <input class="allbuts" id="subbut" type="submit" value="Make changes">
