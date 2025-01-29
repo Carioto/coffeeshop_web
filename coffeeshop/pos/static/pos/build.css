@@ -29,7 +29,7 @@ input[type="checkbox"] {
 }
 input[type="checkbox"]:checked + .flav_lab,
 input[type="checkbox"]:checked + .topp_lab {
-  background-color: #f7fcb0; /* Highlight color */
+  background-color: #b0dbfc; /* Highlight color */
   color: blue; /* Change text color */
   border-color: #ffa500; /* Change border color */
 }
