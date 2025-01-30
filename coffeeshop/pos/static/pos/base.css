@@ -1,6 +1,7 @@
 :root {
   background-color: rgb(249, 249, 234);
   color: black;
+  font-size: 1.5rem;
 }
 #shopname {
   font-family: "Oi", serif;
@@ -9,7 +10,7 @@
 }
 #sidebar {
   height: 95vh;
-  width: 220px;
+  width: 270px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -19,7 +20,7 @@
   overflow-x: hidden;
 }
 main {
-  margin-right: 220px;
+  margin-right: 270px;
 }
 ul {
   list-style: none;
@@ -49,7 +50,7 @@ ul {
 #aside_total {
   position: fixed;
   bottom: 10%;
-  padding-left: 15px;
+  padding-left: 3%;
 }
 .order-item {
   display: flex;

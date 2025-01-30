@@ -5,7 +5,7 @@
 {% block styles %}<link rel="stylesheet" href="{% static 'pos/changes.css' %}">{% endblock %}
 
 {% block content %}
-<h3 class="head1">Change Drink Quantities!</h3>
+<h3 class="head1">Change Drink Quantities</h3>
 <div id="layout">
     {% if current_order %}
         <form method="post" id="changeblock">
@@ -30,7 +30,11 @@
               </div>
         </form>
     {% else %}
-            <p>There are no items in your order</p>
+        <div id="no_order">
+            <p class="noord">There are no items in your order</p>
+            <a href="{% url 'pos:front_page' %}" type="reset" class="allbuts noord" >Start a New order</a> 
+        </div>
+
     {% endif %}
  
 </div>

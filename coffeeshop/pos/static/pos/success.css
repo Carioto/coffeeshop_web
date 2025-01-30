@@ -5,8 +5,7 @@
   align-items: center;
   margin-bottom: 5%;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 2rem;
-  max-height: 5%;
+  font-size: 1.5rem;
 }
 li {
   list-style: none;
@@ -22,5 +21,8 @@ li {
   margin-left: 20px;
 }
 .finaloptions {
-  margin-top: -25px;
+  margin-top: -55px;
+}
+.finalopts {
+  margin-top: -40px;
 }

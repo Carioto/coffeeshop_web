@@ -83,9 +83,14 @@ def complete(request):
         subtot = subtot + float(drink["total_cost"])
     order_total = round(subtot * tax, 2)
     tax_amount = round(subtot * (tax - 1), 2)
-    order.append({"subtot": subtot, "tax": tax_amount, "total": order_total})
-    order_id = Order.objects.create(order_details=order)
-    request.session["order"] = []
+    order_with_totals = {
+        "items": order,
+        "subtot": subtot,
+        "tax": tax_amount,
+        "total": order_total,
+    }
+    order_id = Order.objects.create(order_details=order_with_totals)
+    request.session["order"] = order
     request.session.modified = True
 
     return render(

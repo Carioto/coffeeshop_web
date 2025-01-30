@@ -6,30 +6,24 @@
 
 {% block content %}
 <h3 class="head1">Drink added to your order!</h3>
-<div id="drink_done">
-  <div>
-
-    <p>{{data.drink}}</p>
-  </div>
-  <div class="finaloptions">
-    <p>Qty: {{data.quantity}} {{data.size.size_name}}</p>
+<div id="drink_done" class="finaloptions">
+   <p>{{data.drink}} &nbsp
+      <span>Qty: {{data.quantity}} &nbsp Size: {{data.size.size_name}}</span>
+    </p>
     {% if data.flavors %}
-    <ul>
+    <ul class="finalopts">
       {% for flavor in data.flavors %}
       <li>{{ flavor.name }} flavor</li>
       {% endfor %}
       {% endif %}
-    </div>
-    <div class="finaloptions">
+      {% if data.toppings %}
     </ul>
-    {% if data.toppings %}
-    <ul>
-      {% for topp in data.toppings %}
-      <li>{{ topp.name }} topping</li>
-      {% endfor %}
-      {% endif %}
-    </ul>
-  </div>
+      <ul class="finalopts">
+        {% for topp in data.toppings %}
+        <li>{{ topp.name }} topping</li>
+        {% endfor %}
+        {% endif %}
+      </ul>
 </div>
 <div id="options">
   <a href="{% url 'pos:drinklist' %}" type="submit" class="allbuts" >Add Another Drink</a>

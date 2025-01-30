@@ -1,8 +1,9 @@
 #list_drinks {
   list-style: none;
+  font-size: 1.5rem;
 }
 #trash {
-  background-color: black;
+  background-color: rgb(249, 249, 234);
   border: none;
   color: aliceblue;
 }
@@ -10,4 +11,17 @@
   background-color: black;
   color: aliceblue;
   width: 30px;
+}
+#layout {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+#subdiv {
+  margin: 30px;
+}
+.head1,
+#options,
+.noord {
+  text-align: center;
 }
